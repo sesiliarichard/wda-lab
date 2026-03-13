@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Vision — WDA Lab</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0D1A0F;
+    --forest:#1B3A22;
+    --moss:#2E5E38;
+    --sage:#607A5F;
+    --gold:#BF8C3A;
+    --amber:#D4A84B;
+    --sand:#E8DCC8;
+    --cream:#F6F2EA;
+    --white:#FDFCF9;
+  }
+  *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
+  body{
+    font-family:'Jost',sans-serif;
+    color:var(--ink);
+    background:var(--white);
+  }
+  header{
+    position:fixed;
+    top:0;left:0;
+    right:0;
+    z-index:200;
+    padding:0 60px;
+    height:72px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:rgba(13,26,15,0.96);
+  }
+  .nav-logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+  }
+  .nav-logo-mark{
+    width:36px;
+    height:36px;
+    border:1.5px solid var(--amber);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Cormorant Garamond',serif;
+    font-size:16px;
+    font-weight:700;
+    color:var(--amber);
+  }
+  .nav-logo-text{
+    font-family:'Cormorant Garamond',serif;
+    font-size:20px;
+    font-weight:700;
+    color:var(--amber);
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .nav-item{
+    position:relative;
+  }
+  .nav-link{
+    display:flex;
+    align-items:center;
+    gap:5px;padding:10px 16px;
+    font-size:13px;
+    color:rgba(255,255,255,0.75);
+    text-decoration:none;
+    background:none;
+    border:none;font-family:'Jost',sans-serif;
+    cursor:pointer;
+    transition:color 0.3s;
+  }
+  .nav-link:hover{
+    color:#fff;
+  }
+  .nav-link svg{
+    width:10px;
+    height:10px;
+    transition:transform 0.3s;
+  }
+  .nav-item:hover .nav-link svg{
+    transform:rotate(180deg);
+  }
+  .dropdown{
+    position:absolute;
+    top:calc(100%+8px);
+    left:0;
+    background:rgba(13,26,15,0.98);
+    border:1px solid rgba(255,255,255,0.08);
+    min-width:200px;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-8px);
+    transition:all 0.3s;
+  }
+  .nav-item:hover .dropdown{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+  }
+  .dropdown a{
+    display:block;
+    padding:12px 20px;
+    font-size:13px;
+    color:rgba(255,255,255,0.7);
+    text-decoration:none;
+    border-bottom:1px solid rgba(255,255,255,0.04);
+    transition:background 0.2s,color 0.2s;}
+  .dropdown a:last-child{
+    border-bottom:none;
+  }
+  .dropdown a:hover{
+    background:rgba(191,140,58,0.12);
+    color:var(--amber);
+  }
+  .nav-cta{
+    background:var(--gold);
+    color:var(--ink)!important;
+    padding:10px 24px!important;
+    font-weight:500;
+  }
+
+  /* HERO */
+  .page-hero{
+    padding:180px 60px 120px;
+    background:var(--ink);
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+  }
+  .page-hero::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:radial-gradient(ellipse 70% 60% at 50% 50%, rgba(46,94,56,0.2) 0%, transparent 65%);
+  }
+  .vision-statement{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(28px,4vw,54px);
+    font-style:italic;font-weight:400;
+    line-height:1.35;
+    color:rgba(255,255,255,0.9);
+    max-width:900px;
+    margin:0 auto;
+    position:relative;
+    z-index:1;
+  }
+  .vision-attribution{
+    margin-top:32px;
+    font-size:12px;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    color:var(--amber);
+    position:relative;
+    z-index:1;
+  }
+
+  /* CONTENT */
+  .vision-body-section{
+    padding:100px 60px;
+    max-width:900px;
+    margin:0 auto;
+  }
+  .section-tag{
+    font-size:11px;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--sage);
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:18px;
+  }
+  .section-tag::before{
+    content:'';
+    width:28px;
+    height:1px;
+    background:var(--sage);
+  }
+  h2.section-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(34px,4vw,56px);
+    font-weight:700;
+    line-height:1.05;
+    color:var(--ink);
+  }
+  h2.section-title em{
+    font-style:italic;
+    color:var(--moss);
+  }
+  .body-col{
+    font-size:16px;
+    font-weight:300;
+    line-height:1.9;
+    color:rgba(13,26,15,0.6);
+    margin-top:36px;
+  }
+  .body-col p+p{
+    margin-top:20px;
+  }
+  .body-col strong{
+    color:var(--ink);
+    font-weight:500;
+  }
+  /* locations block */
+  .locations-block{
+    background:var(--forest);
+    padding:80px 60px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+  }
+  .loc-title{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(28px,3vw,44px);
+    font-weight:700;
+    color:#fff;
+    line-height:1.1;
+    margin-bottom:12px;
+  }
+  .loc-title em{
+    font-style:italic;
+    color:var(--amber);
+  }
+  .loc-sub{
+    font-size:14px;
+    font-weight:300;
+    color:rgba(255,255,255,0.45);
+    line-height:1.7;
+  }
+  .loc-list{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+  }
+  .loc-item{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    padding:18px 0;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .loc-item:last-child{
+    border-bottom:none;
+  }
+  .loc-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--gold);
+    flex-shrink:0;
+  }
+  .loc-name{
+    font-size:14px;
+    font-weight:500;
+    color:rgba(255,255,255,0.75);
+  }
+  .loc-country{
+    font-size:12px;
+    color:rgba(255,255,255,0.3);
+    margin-top:2px;
+    letter-spacing:0.05em;
+  }
+
+  /* CTA */
+  .contact-cta{
+    background:var(--gold);
+    padding:90px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:48px;
+  }
+  .contact-cta h2{
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(28px,3.5vw,52px);
+    font-weight:700;
+    color:var(--ink);
+    line-height:1.05;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Jost',sans-serif;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    text-decoration:none;
+    border-radius:2px;
+    transition:all 0.3s;
+    cursor:pointer;
+    border:none;
+  }
+  .btn-dark{
+    background:var(--ink);
+    color:var(--amber);
+    padding:16px 40px;
+    white-space:nowrap;
+  }
+  .btn-dark:hover{
+    background:var(--forest);
+    transform:translateY(-2px);
+  }
+
+  footer{
+    background:var(--ink);
+    padding:48px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:24px;
+    border-top:1px solid rgba(255,255,255,0.05);
+  }
+  .footer-brand{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px;
+    font-weight:700;
+    color:var(--amber);
+    letter-spacing:0.04em;
+    margin-bottom:6px;
+  }
+  .footer-info{
+    font-size:12px;
+    font-weight:300;
+    color:rgba(255,255,255,0.25);
+    line-height:1.9;
+  }
+  .footer-nav{
+    display:flex;
+    gap:28px;
+    flex-wrap:wrap;
+  }
+  .footer-nav a{
+    font-size:12px;
+    letter-spacing:0.08em;
+    color:rgba(255,255,255,0.3);
+    text-decoration:none;
+    transition:color 0.3s;
+    text-transform:uppercase;
+  }
+  .footer-nav a:hover{
+    color:var(--amber);
+  }
+  @media(max-width:900px){header{
+    padding:0 24px;
+    }
+    .page-hero{
+      padding:120px 24px 80px;
+      }
+      .vision-body-section{
+        padding:72px 24px;
+        }
+        .locations-block{
+          grid-template-columns:1fr;
+          padding:60px 24px;
+          }
+          .contact-cta{
+            flex-direction:column;
+            padding:60px 24px;
+            }
+            footer{
+              flex-direction:column;
+              padding:40px 24px;
+              }
+              nav{
+                display:none;
+                }
+                
+      }
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">W</div>
+    <span class="nav-logo-text">WDA Lab</span>
+  </a>
+  <nav>
+    <div class="nav-item"><button class="nav-link">Services <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="dropdown"><a href="services.html">Overview of Services</a><a href="services.html#annotation">High-Fidelity Annotation</a><a href="services.html#data">Data Entry & Management</a><a href="services.html#analysis">Evidence-Based Analysis</a></div></div>
+    <div class="nav-item"><button class="nav-link">About <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button><div class="dropdown"><a href="team.html">Our Team</a><a href="vision.html">Our Vision</a></div></div>
+    <a href="contact.html" class="nav-link nav-cta">Contact Us</a>
+  </nav>
+</header>
+
+<div class="page-hero">
+  <p class="vision-statement">"Transforming wildlife data into conservation impact — through rigorous, transparent services trusted by researchers and organizations across the globe."</p>
+  <p class="vision-attribution">WDA Lab Vision Statement</p>
+</div>
+
+<div class="vision-body-section">
+  <p class="section-tag">Why We Exist</p>
+  <h2 class="section-title">Closing the gap between <em>data and action</em></h2>
+  <div class="body-col">
+    <p>Wildlife populations are declining at an unprecedented rate. Research continues to reveal the scale of biodiversity loss — yet the organizations working hardest to reverse it are often held back by the same underlying problem: <strong>fragmented, inconsistent, and unmanageable data</strong> that delays decisions and undermines the credibility of conservation efforts.</p>
+    <p>At WDA Lab, we saw this gap and made it our purpose to close it. We work alongside researchers and conservation organizations worldwide, providing the data precision, structure, and analysis they need to move from raw field information to <strong>confident, evidence-backed action.</strong></p>
+    <p>Rooted in Arusha and experienced across some of the continent's most ecologically significant landscapes — from the KAZA ecosystem in Botswana to the Serengeti in Tanzania — our work is grounded in real field knowledge and a deep understanding of what conservation teams face on the ground.</p>
+    <p>Through data collection, annotation, entry, and analysis, WDA Lab gives researchers and organizations the clarity and confidence to make decisions that truly protect the world's wildlife.</p>
+  </div>
+</div>
+
+<div class="locations-block">
+  <div>
+    <h2 class="loc-title">Grounded in the <em>field</em></h2>
+    <p class="loc-sub">Our experience spans some of Africa's most ecologically significant landscapes, giving us a real-world understanding of conservation data challenges.</p>
+  </div>
+  <div class="loc-list">
+    <div class="loc-item">
+      <span class="loc-dot"></span>
+      <div>
+        <div class="loc-name">KAZA Transboundary Conservation Initiative</div>
+        <div class="loc-country">Botswana</div>
+      </div>
+    </div>
+    <div class="loc-item">
+      <span class="loc-dot"></span>
+      <div>
+        <div class="loc-name">Save Valley Conservancy</div>
+        <div class="loc-country">Zimbabwe</div>
+      </div>
+    </div>
+    <div class="loc-item">
+      <span class="loc-dot"></span>
+      <div>
+        <div class="loc-name">Boma-Badingilo Ecosystem Survey</div>
+        <div class="loc-country">South Sudan</div>
+      </div>
+    </div>
+    
+    <div class="loc-item">
+      <span class="loc-dot"></span>
+      <div>
+        <div class="loc-name">Serengeti National Park — Wild-Co Tanzania</div>
+        <div class="loc-country">Tanzania</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contact-cta">
+  <h2>Join us in protecting<br>the world's wildlife.</h2>
+  <a href="contact.html" class="btn btn-dark">Get in touch →</a>
+</div>
+
+<footer>
+  <div>
+    <div class="footer-brand">WDA Lab</div>
+    <div class="footer-info">P.O. Box 2123, Arusha, Tanzania &nbsp;|&nbsp; +255 (0) 71 724 0523 &nbsp;|&nbsp; info@wdalab.green</div>
+  </div>
+  <nav class="footer-nav">
+    <a href="index.html">Home</a>
+    <a href="services.html">Services</a>
+    <a href="team.html">Team</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy Policy</a>
+  </nav>
+</footer>
+</body>
+</html>
